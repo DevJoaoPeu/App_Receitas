@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { prisma } from "../../Services/prisma";
 
+import { hash } from "bcryptjs";
+
 interface InforUser {
   name: string;
   email: string;
@@ -25,11 +27,19 @@ export const RegisterUser = async (req: Request, res: Response) => {
       message: "Email já cadastrado",
     });
   }
+
+  const passHash = await hash(password, 8);
+
   const user = await prisma.user.create({
     data: {
       name,
       email,
-      password,
+      password: passHash,
+    },
+    select: {
+      id: true,
+      name: true,
+      email: true,
     },
   });
 
