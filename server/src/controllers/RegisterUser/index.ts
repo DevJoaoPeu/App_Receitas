@@ -25,4 +25,13 @@ export const RegisterUser = async (req: Request, res: Response) => {
       message: "Email já cadastrado",
     });
   }
+  const user = await prisma.user.create({
+    data: {
+      name,
+      email,
+      password,
+    },
+  });
+
+  return res.json(user);
 };
