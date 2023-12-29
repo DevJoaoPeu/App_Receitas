@@ -16,4 +16,13 @@ export const RegisterUser = async (req: Request, res: Response) => {
       message: "Porfavor, preecha todos os campos!",
     });
   }
+
+  const alreadyExists = await prisma.user.findUnique({ where: { email } });
+
+  if (alreadyExists) {
+    return res.status(400).json({
+      error: true,
+      message: "Email já cadastrado",
+    });
+  }
 };
