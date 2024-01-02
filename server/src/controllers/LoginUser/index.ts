@@ -6,13 +6,22 @@ interface PropsUser {
   password: string;
 }
 
-const LoginUser = async (req: Request, res: Response) => {
+export const LoginUser = async (req: Request, res: Response) => {
   const { email, password }: PropsUser = req.body;
 
   if (!email || !password) {
     return res.status(400).json({
       error: true,
       message: "Preencha todos os campos!",
+    });
+  }
+
+  const user = await prisma.user.findUnique({ where: { email } });
+
+  if (!user) {
+    return res.status(400).json({
+      error: true,
+      message: "Usuario não encontrado",
     });
   }
 };
