@@ -11,6 +11,8 @@ interface PropsUser {
 export const LoginUser = async (req: Request, res: Response) => {
   const { email, password }: PropsUser = req.body;
 
+  const user = await prisma.user.findUnique({ where: { email } });
+
   if (!email || !password) {
     return res.status(400).json({
       error: true,
@@ -18,21 +20,19 @@ export const LoginUser = async (req: Request, res: Response) => {
     });
   }
 
-  const user = await prisma.user.findUnique({ where: { email } });
-
-  const passMatch = await compare(password, user?.password as string);
-
   if (!user) {
     return res.status(400).json({
       error: true,
-      message: "Usuario/senha incorretos",
+      message: "Email/senha incorretos",
     });
   }
+
+  const passMatch = await compare(password, user?.password as string);
 
   if (!passMatch) {
     return res.status(400).json({
       error: true,
-      message: "Usuario/senha incorretos",
+      message: "Email/senha incorretos",
     });
   }
 
@@ -41,9 +41,18 @@ export const LoginUser = async (req: Request, res: Response) => {
       name: user.name,
       email: user.email,
     },
-    process.env.JWT_SECRET,
+    process.env.JWT_SECRET as string,
     { subject: user.id, expiresIn: "30d" }
   );
 
-  
+  return res.status(200).json({
+    error: false,
+    message: "Usuario logado com sucesso!",
+    data: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      token: token,
+    },
+  });
 };
