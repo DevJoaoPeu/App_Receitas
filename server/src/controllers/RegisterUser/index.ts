@@ -43,5 +43,9 @@ export const RegisterUser = async (req: Request, res: Response) => {
     },
   });
 
-  return res.json(user);
+  return res.status(200).json({
+    error: false,
+    message: "Usuario criado com sucesso",
+    user,
+  });
 };
