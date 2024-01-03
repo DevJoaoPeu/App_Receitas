@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { prisma } from "../../Services/prisma";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
+import { isAuthenticated } from "../../Middlewares";
 
 interface PropsUser {
   email: string;
@@ -53,6 +54,7 @@ export const LoginUser = async (req: Request, res: Response) => {
       name: user.name,
       email: user.email,
       token: token,
+      isAuthenticated,
     },
   });
 };
