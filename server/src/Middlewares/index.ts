@@ -21,8 +21,6 @@ export const isAuthenticated = (
   try {
     const { sub } = verify(token, process.env.JWT_SECRET as string) as Payload;
 
-    console.log()
-
     req.user_id = sub;
 
     return next();
