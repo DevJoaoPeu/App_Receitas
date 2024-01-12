@@ -31,7 +31,14 @@ interface Props {
     },
   });
 
-  return res.json({
+  if(!receitas){
+    return res.status(400).json({
+      error: true,
+      message: "Error ao cadastrar"
+    })
+  }
+
+  return res.status(200).json({
     error: false,
     message: "Receita cadastrada com sucesso!",
     receitas
