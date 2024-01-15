@@ -2,3 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --blue-500: #4292BF;
+    --blue-800: #357599;
+    --write: #fff;
+    --black: #000;
+    --gray-500: #817E7E;
+    --gray-800: #484848;
+}
