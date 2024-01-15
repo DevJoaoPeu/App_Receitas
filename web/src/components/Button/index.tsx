@@ -5,5 +5,5 @@ interface PropsButton extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = ({ children, ...rest }: PropsButton) => {
-  return <button {...rest}>{children}</button>;
+  return <button className="bg-blue-600 py-2 rounded-md text-white" {...rest}>{children}</button>;
 };
