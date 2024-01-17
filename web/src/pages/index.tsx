@@ -7,8 +7,8 @@ import { Copywhite } from "@/components/Copywhite";
 const Home = () => {
   return (
     <div>
-      <div className="flex flex-col items-center justify-center m-8">
-        <Image src={logo} alt="logo" />
+      <div className="flex flex-col items-center justify-center mt-[125px]">
+        <Image className="mb-8" src={logo} width={250} alt="logo" />
         <div className="flex flex-col max-w-[520px] gap-1 w-full">
           <Input type="text" placeholder="Email" />
           <Input type="password" placeholder="Senha" />
