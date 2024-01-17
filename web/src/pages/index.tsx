@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from "../../public/logo.png";
+import logo from "../../public/logo.png"
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
 import { Copywhite } from "@/components/Copywhite";
