@@ -3,6 +3,7 @@ import Image from "next/image";
 import imageMain from "../../../public/feijoada.png"
 import { FaSearch } from "react-icons/fa";
 import { Copywhite } from "@/components/Copywhite";
+import { ModalOrder } from "@/components/Modal";
 
 const Home = () => {
   return (
@@ -38,6 +39,7 @@ const Home = () => {
             <button className="bg-blue-500 py-1 px-4 rounded-md">Veja a receita</button>
           </div>
         </div>
+        <ModalOrder />
       </div>
       <Copywhite />
     </div>
