@@ -17,7 +17,7 @@ const Home = () => {
             <button className="bg-blue-600 text-white px-[3rem] py-2 text-[1.2rem] rounded-md">Cadastre</button>
           </div>
         </div>
-        <Image width={500} src={imageMain} alt="imagem feijoada" />
+        <Image className="rounded-md" width={500} src={imageMain} alt="imagem feijoada" />
       </div>
       <div className="flex flex-col px-[250px] py-10 text-center">
         <div className="flex gap-8 justify-center mb-10">
