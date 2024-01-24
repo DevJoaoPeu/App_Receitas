@@ -8,7 +8,7 @@ const CriarReceita = () => {
   return (
     <div>
       <Header />
-      <div className="px-[250px] mt-[280px]">
+      <div className="px-[250px] mt-[200px]">
         <div>
           <h1 className="flex justify-center gap-4 items-center text-[2.5rem]">
             Cadastre sua receita <PiBowlFood />
