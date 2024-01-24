@@ -2,9 +2,13 @@ import Image from "next/image";
 import Modal from "react-modal";
 import logo from "../../../public/feijoada.png";
 import { FiX } from "react-icons/fi";
-import { useState } from "react";
 
-export const ModalOrder = () => {
+interface PropsModal {
+  modal: boolean
+  setModal: (props: boolean) => void
+}
+
+export const ModalOrder = ({modal, setModal}: PropsModal) => {
 
   const customStyle = {
     overlay: {
@@ -22,8 +26,8 @@ export const ModalOrder = () => {
   };
 
   return (
-    <Modal isOpen={false} style={customStyle}>
-      <button className="flex float-end text-red-500 text-xl"><FiX /></button>
+    <Modal isOpen={modal} style={customStyle}>
+      <button onClick={() => setModal(false)} className="flex float-end text-red-500 text-xl"><FiX /></button>
       <div className="flex justify-between gap-10">
         <div>
           <Image src={logo} alt="logo" className="w-200" />
