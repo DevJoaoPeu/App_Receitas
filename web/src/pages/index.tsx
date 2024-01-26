@@ -9,7 +9,7 @@ const Home = () => {
     <div>
       <div className="flex flex-col items-center justify-center mt-[100px]">
         <Image className="mb-8" src={logo} width={170} alt="logo" />
-        <div className="flex flex-col max-w-[470px] gap-1 w-full">
+        <div className="flex flex-col max-w-[470px] gap-1 w-full px-4">
           <Input type="text" placeholder="Email" />
           <Input type="password" placeholder="Senha" />
           <Button>Login</Button>
