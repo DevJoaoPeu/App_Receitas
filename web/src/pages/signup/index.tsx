@@ -7,9 +7,9 @@ import Image from "next/image";
 const Signup = () => {
   return (
     <div>
-      <div className="flex flex-col items-center justify-center mt-[125px]">
-        <Image src={logo} className="mb-8" width={250} alt="logo" />
-        <div className="flex flex-col max-w-[520px] gap-1 w-full">
+      <div className="flex flex-col items-center justify-center mt-[100px]">
+        <Image src={logo} className="mb-8" width={170} alt="logo" />
+        <div className="flex flex-col max-w-[470px] gap-1 w-full">
           <Input type="text" placeholder="Nome" />
           <Input type="text" placeholder="Email" />
           <Input type="password" placeholder="Senha" />
