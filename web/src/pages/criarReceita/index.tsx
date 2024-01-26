@@ -5,12 +5,13 @@ import { Input2 } from "@/components/Input2";
 import { PiBowlFood } from "react-icons/pi";
 
 const CriarReceita = () => {
+
   return (
     <div>
       <Header />
-      <div className="px-[250px] mt-[200px]">
+      <div className="mt-[180px]">
         <div>
-          <h1 className="flex justify-center gap-4 items-center text-[2.5rem]">
+          <h1 className="flex px-2 justify-center gap-4 items-center text-[2rem] sm:text-[2.5rem]">
             Cadastre sua receita <PiBowlFood />
           </h1>
         </div>
