@@ -12,9 +12,9 @@ const Home = () => {
   return (
     <div>
       <Header />
-      <div className="mt-[200px] pb-[3.5rem] px-[250px] flex justify-between items-center">
-        <div className="flex flex-col">
-          <h1 className="text-[3rem] leading-[4rem]">Receitas do chefe</h1>
+      <div className="mt-[150px] sm:mt-[200px] flex flex-col-reverse pb-[3.5rem] sm:flex-row items-center sm:px-[250px] px-3 sm:justify-between">
+        <div className="flex flex-col w-full sm:text-left">
+          <h1 className="text-[2rem] sm:text-[3rem] leading-[4rem]">Receitas do chefe</h1>
           <h4 className="text-[1.3rem] text-gray-500">
             Receitas enviadas pelos visitantes
           </h4>
@@ -27,47 +27,49 @@ const Home = () => {
             </button>
           </div>
         </div>
-        <Image
-          className="rounded-md"
-          width={350}
-          src={imageMain}
-          alt="imagem feijoada"
-        />
+        <div className="mt-8 sm:mt-0">
+          <Image
+            className="rounded-md"
+            src={imageMain}
+            width={450}
+            alt="imagem feijoada"
+          />
+        </div>
       </div>
-      <div className="flex flex-col px-[250px] py-10 text-center">
-        <div className="flex gap-8 justify-center mb-10">
+      <div className="px-[20px] py-10 text-center">
+        <div className="flex gap-4 justify-center mb-6">
           <input
-            className="rounded-md bg-blue-600 text-white placeholder-slate-200 outline-none px-10 py-2 w-full max-w-[35rem]"
+            className="rounded-md bg-blue-600 text-white placeholder-slate-200 outline-none px-6 py-3 w-full sm:max-w-[400px]"
             placeholder="Busque a receita"
           />
-          <button className="rounded-md bg-blue-600 px-6 text-white">
+          <button className="rounded-md bg-blue-600 px-4 py-3 text-white">
             <FaSearch />
           </button>
         </div>
-        <div className="flex flex-col gap-2">
-          <div className="rounded-md items-center flex max-w-[41rem] w-full justify-between  bg-blue-600 text-white px-5 py-3 m-auto">
+        <div className="flex flex-col gap-4 mb-10">
+          <div className="rounded-md flex items-center justify-between bg-blue-600 text-white px-4 max-w-[470px] w-full py-3 mx-auto">
             <h4>Strogonoff de frango</h4>
             <button
               onClick={() => setModal(true)}
-              className="bg-blue-500 py-1 px-4 rounded-md"
+              className="bg-blue-500 py-1 px-3 rounded-md"
             >
               Veja a receita
             </button>
           </div>
-          <div className="rounded-md items-center flex max-w-[41rem] w-full justify-between  bg-blue-600 text-white px-5 py-3 m-auto">
+          <div className="rounded-md flex items-center justify-between bg-blue-600 text-white px-4 py-3 max-w-[470px] w-full mx-auto">
             <h4>Strogonoff de frango</h4>
             <button
               onClick={() => setModal(true)}
-              className="bg-blue-500 py-1 px-4 rounded-md"
+              className="bg-blue-500 py-1 px-3 rounded-md"
             >
               Veja a receita
             </button>
           </div>
-          <div className="rounded-md items-center flex max-w-[41rem] w-full justify-between  bg-blue-600 text-white px-5 py-3 m-auto">
+          <div className="rounded-md flex items-center justify-between bg-blue-600 text-white px-4 py-3 max-w-[470px] w-full mx-auto">
             <h4>Strogonoff de frango</h4>
             <button
               onClick={() => setModal(true)}
-              className="bg-blue-500 py-1 px-4 rounded-md"
+              className="bg-blue-500 py-1 px-3 rounded-md"
             >
               Veja a receita
             </button>
