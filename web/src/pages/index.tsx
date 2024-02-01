@@ -13,10 +13,16 @@ const Home = () => {
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
     if (email == "" || password == "") {
-      alert("Preecha todos os campos")
+      toast.error("Preencha todos os campos", {
+        position: "top-center",
+      });
       return;
     }
-    console.log(email, password);
+
+    let data = {
+      email,
+      password,
+    };
   };
 
   return (
