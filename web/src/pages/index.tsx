@@ -3,12 +3,15 @@ import logo from "../../public/logo.png";
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
 import { Copywhite } from "@/components/Copywhite";
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { toast } from "react-toastify";
+import { AuthContext } from "@/context/AuthContext";
 
 const Home = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { signIn } = useContext(AuthContext)
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
@@ -23,6 +26,8 @@ const Home = () => {
       email,
       password,
     };
+
+    await signIn(data)
   };
 
   return (
