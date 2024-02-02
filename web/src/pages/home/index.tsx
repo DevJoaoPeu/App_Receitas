@@ -5,6 +5,7 @@ import { FaSearch } from "react-icons/fa";
 import { Copywhite } from "@/components/Copywhite";
 import { ModalOrder } from "@/components/Modal";
 import { useState } from "react";
+import Link from "next/link";
 
 const Home = () => {
   const [modal, setModal] = useState(false);
@@ -22,9 +23,9 @@ const Home = () => {
             <h4 className="text-gray-700 text-[1.5rem]">
               Cadastre a sua receita já
             </h4>
-            <button className="bg-blue-600 text-white px-[3rem] py-2 text-[1rem] rounded-md">
+            <Link href="/criarReceita" className="bg-blue-600 text-white px-[3rem] py-2 text-[1rem] rounded-md">
               Cadastre
-            </button>
+            </Link>
           </div>
         </div>
         <div className="mt-8 sm:mt-0">
