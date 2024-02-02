@@ -41,7 +41,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     try {
       const response = await api.post("/login", { email, password });
 
-      const { id, name, token } = response.data;
+      const { id, name, token } = response.data.data;
+      console.log(response)
       setCookie(undefined, "@appPedidos.token", token, {
         maxAge: 60 * 60 * 24 * 30,
         path: "/",
