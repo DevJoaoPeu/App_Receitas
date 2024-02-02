@@ -6,12 +6,13 @@ import { Copywhite } from "@/components/Copywhite";
 import { FormEvent, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "@/context/AuthContext";
+import { canSSRGuest } from "@/utils/canSSrGuest";
 
 const Home = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { signIn } = useContext(AuthContext)
+  const { signIn } = useContext(AuthContext);
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
@@ -27,7 +28,7 @@ const Home = () => {
       password,
     };
 
-    await signIn(data)
+    await signIn(data);
   };
 
   return (
@@ -64,3 +65,11 @@ const Home = () => {
 };
 
 export default Home;
+
+export const getServerSideProps = canSSRGuest(
+  async (ctx) => {
+    return {
+      props: {},
+    };
+  }
+);
