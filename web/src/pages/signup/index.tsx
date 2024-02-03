@@ -2,25 +2,34 @@ import logo from "../../../public/logo.png";
 import { Button } from "@/components/Button";
 import { Copywhite } from "@/components/Copywhite";
 import { Input } from "@/components/Input";
+import { AuthContext } from "@/context/AuthContext";
 import Image from "next/image";
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { toast } from "react-toastify";
 
 const Signup = () => {
+  const { signUp } = useContext(AuthContext);
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignUp = (e: FormEvent) => {
+  const handleSignUp = async (e: FormEvent) => {
     e.preventDefault();
 
-    if(!name || !email || !password){
+    if (!name || !email || !password) {
       toast.error("Preecha todos os campos", {
-        position: "top-center"
-      })
+        position: "top-center",
+      });
     }
 
-    console.log(name, email, password)
+    let data = {
+      name,
+      email,
+      password,
+    };
+
+    await signUp(data);
   };
 
   return (
