@@ -9,10 +9,19 @@ const CriarReceita = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [ingredients, setIngredients] = useState("");
-  const [preparartion, setPreparation] = useState("");
+  const [preparation, setPreparation] = useState("");
   const [movie, setMovie] = useState("");
 
-  const handleCreate = (event: FormEvent) => {};
+  const [itemReceita, setItemReceita] = useState<string[]>([])
+
+  const handleCreate = (event: FormEvent) => {
+    event.preventDefault();
+
+    const arrayIngredients = ingredients.split(",")
+    setItemReceita(arrayIngredients)
+
+    console.log(itemReceita,title, description, preparation, movie)
+  };
 
   return (
     <div>
@@ -24,7 +33,7 @@ const CriarReceita = () => {
           </h1>
         </div>
         <div>
-          <form  className="flex flex-col gap-1 items-center mt-8">
+          <form className="flex flex-col gap-1 items-center mt-8">
             <Input2
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Titulo"
@@ -35,7 +44,7 @@ const CriarReceita = () => {
             />
             <Input2
               onChange={(e) => setIngredients(e.target.value)}
-              placeholder="Ingredientes"
+              placeholder="Ingredientes: Separe por virgula"
             />
             <Input2
               onChange={(e) => setPreparation(e.target.value)}
