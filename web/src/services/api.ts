@@ -6,7 +6,7 @@ import { SignOut } from "@/context/AuthContext";
 export const setUpApiClient = (ctx = undefined) => {
   let cookies = parseCookies(ctx);
   const api = axios.create({
-    baseURL: "http://localhost:3333",
+    baseURL: "http://localhost:3333", // "https://deploy-pedidos.vercel.app/", 
     headers: {
       Authorization: `Bearer ${cookies["@appPedidos.token"]}`,
     },
