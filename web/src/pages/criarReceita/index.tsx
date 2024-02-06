@@ -2,7 +2,8 @@ import { Copywhite } from "@/components/Copywhite";
 import { Header } from "@/components/Header";
 import { Input } from "@/components/Input";
 import { Input2 } from "@/components/Input2";
-import { FormEvent, useState } from "react";
+import { AuthContext } from "@/context/AuthContext";
+import { FormEvent, useContext, useState } from "react";
 import { PiBowlFood } from "react-icons/pi";
 
 const CriarReceita = () => {
@@ -12,15 +13,24 @@ const CriarReceita = () => {
   const [preparation, setPreparation] = useState("");
   const [movie, setMovie] = useState("");
 
-  const [itemReceita, setItemReceita] = useState<string[]>([])
+  const { createReceita } = useContext(AuthContext);
 
-  const handleCreate = (event: FormEvent) => {
+  // const [itemReceita, setItemReceita] = useState<string[]>([])
+
+  const handleCreate = async (event: FormEvent) => {
     event.preventDefault();
 
-    const arrayIngredients = ingredients.split(",")
-    setItemReceita(arrayIngredients)
+    let data = {
+      title,
+      description,
+      ingredients,
+      preparation,
+      movie,
+    };
 
-    console.log(itemReceita,title, description, preparation, movie)
+    await createReceita(data);
+    //  const arrayIngredients = ingredients.split(",")
+    //  setItemReceita(arrayIngredients)
   };
 
   return (
