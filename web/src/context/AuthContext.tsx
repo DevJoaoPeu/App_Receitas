@@ -7,7 +7,8 @@ import { toast } from "react-toastify";
 type ContextData = {
   signIn: (credentials: SignInProps) => Promise<void>;
   signUp: (credentials: SignUpProps) => Promise<void>;
-  SignOut: () => void
+  SignOut: () => void;
+  createReceita: (credentials: PropsReceita) => Promise<void>
 };
 
 type AuthProviderProps = {
@@ -29,6 +30,14 @@ interface SignUpProps {
   name: string;
   email: string;
   password: string;
+}
+
+interface PropsReceita {
+  title: string;
+  description: string;
+  ingredients: string;
+  preparation: string;
+  movie: string;
 }
 
 export const AuthContext = createContext({} as ContextData);
@@ -93,8 +102,27 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
+  const createReceita = async ({
+    title,
+    description,
+    ingredients,
+    preparation,
+    movie,
+  }: PropsReceita) => {
+    const response = await api.post("/create", {
+      title,
+      description,
+      ingredient: ingredients,
+      preparation_mode: preparation,
+      movie_link: movie,
+      userId: "65bdacb8bd9995dee558bf9c",
+    });
+
+    console.log(response)
+  };
+
   return (
-    <AuthContext.Provider value={{ signIn, signUp, SignOut }}>
+    <AuthContext.Provider value={{ signIn, signUp, SignOut, createReceita }}>
       {children}
     </AuthContext.Provider>
   );
