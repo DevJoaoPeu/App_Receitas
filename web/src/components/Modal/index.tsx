@@ -8,18 +8,21 @@ import { api } from "@/services/apiClient";
 interface PropsModal {
   modal: boolean;
   setModal: (props: boolean) => void;
+  item: PropsReceita;
 }
 
 interface PropsReceita {
   title: string;
   description: string;
-  ingredients: string;
+  ingredient: string;
   preparation: string;
   movie: string;
 }
 
 
-export const ModalOrder = ({ modal, setModal }: PropsModal) => {
+export const ModalOrder = ({ modal, setModal, item }: PropsModal) => {
+
+  const ArrayIngredients =  item.ingredient.split(",")
 
   const customStyle = {
     overlay: {
@@ -54,32 +57,24 @@ export const ModalOrder = ({ modal, setModal }: PropsModal) => {
           </div>
           <div className="px-5 py-5">
             <ul className="list-disc">
-              <li>feijão</li>
-              <li>Alho</li>
-              <li>Cebola</li>
-              <li>Coentro</li>
-              <li>Folha de louro</li>
-              <li>Linguiça</li>
+              {
+                ArrayIngredients.map((item, index) =>(
+                  <li key={index}>{item}</li>
+                ))
+              }
             </ul>
           </div>
         </div>
         <div className="sm:w-1/2">
           <div className="text-center">
-            <h1 className="text-xl font-bold mb-3">Strogonoff de frango</h1>
+            <h1 className="text-xl font-bold mb-3"> {item.title} </h1>
             <h4 className="text-sm sm:text-[17px]">
-              Strogonoff de frango cremoso para toda a família, com poucos
-              ingredientes e um ótimo sabor!
+              {item.preparation}
             </h4>
           </div>
           <div className="mt-5">
             <p className="text-sm sm:text-[17px]">
-              Modo de preparo: Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ac feugiat sed lectus vestibulum mattis
-              ullamcorper velit sed. Sagittis eu volutpat odio facilisis mauris.
-              Pharetra diam sit amet nisl suscipit adipiscing. Turpis in eu mi
-              bibendum neque. Euismod elementum nisi quis eleifend quam
-              adipiscing vitae proin.
+            {item.description}
             </p>
           </div>
         </div>
