@@ -7,13 +7,14 @@ import { ModalOrder } from "@/components/Modal";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { api } from "@/services/apiClient";
+import { toast } from "react-toastify";
 
 type PropsReceita = {
   title: string;
   description: string;
   ingredient: string;
-  preparation: string;
-  movie: string;
+  preparation_mode: string;
+  movie_link: string;
   id: string;
 };
 
@@ -31,14 +32,27 @@ const Home = () => {
       setResponse(data);
     };
     handleReponse();
-    console.log(response);
   }, []);
 
   const handleSendModal = async (id: string) => {
-    const response = await api.get(`/list/${id}`);
-    let data = response.data.infos;
-    setItem(data);
-    setModal(true)
+    try {
+      const response = await api.get(`/list/${id}`);
+
+      if (!response) {
+        toast.error("Erro ao carregar as informações", {
+          position: "top-center",
+        });
+        return;
+      }
+
+      let data = response.data.infos;
+      setItem(data);
+      setModal(true);
+    } catch (error) {
+      toast.error("Erro ao carregar as informações", {
+        position: "top-center",
+      });
+    }
   };
 
   return (
