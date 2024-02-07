@@ -2,13 +2,25 @@ import Image from "next/image";
 import Modal from "react-modal";
 import logo from "../../../public/feijoada.png";
 import { FiX } from "react-icons/fi";
+import { useEffect, useState } from "react";
+import { api } from "@/services/apiClient";
 
 interface PropsModal {
   modal: boolean;
   setModal: (props: boolean) => void;
 }
 
+interface PropsReceita {
+  title: string;
+  description: string;
+  ingredients: string;
+  preparation: string;
+  movie: string;
+}
+
+
 export const ModalOrder = ({ modal, setModal }: PropsModal) => {
+
   const customStyle = {
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.8)",
@@ -22,9 +34,10 @@ export const ModalOrder = ({ modal, setModal }: PropsModal) => {
       transform: "translate(-50%, -50%)",
       backgroundColor: "#fff",
       padding: "40px",
-      maxWidth: "90%"
+      maxWidth: "90%",
     },
   };
+
 
   return (
     <Modal isOpen={modal} style={customStyle}>
@@ -41,7 +54,7 @@ export const ModalOrder = ({ modal, setModal }: PropsModal) => {
           </div>
           <div className="px-5 py-5">
             <ul className="list-disc">
-              <li>Feijão</li>
+              <li>feijão</li>
               <li>Alho</li>
               <li>Cebola</li>
               <li>Coentro</li>
