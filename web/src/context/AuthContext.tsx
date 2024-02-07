@@ -8,7 +8,7 @@ type ContextData = {
   signIn: (credentials: SignInProps) => Promise<void>;
   signUp: (credentials: SignUpProps) => Promise<void>;
   SignOut: () => void;
-  createReceita: (credentials: PropsReceita) => Promise<void>
+  createReceita: (credentials: PropsReceita) => Promise<void>;
 };
 
 type AuthProviderProps = {
@@ -109,16 +109,24 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     preparation,
     movie,
   }: PropsReceita) => {
-    const response = await api.post("/create", {
-      title,
-      description,
-      ingredient: ingredients,
-      preparation_mode: preparation,
-      movie_link: movie,
-      userId: "65bdacb8bd9995dee558bf9c",
-    });
+    try {
+      const response = await api.post("/create", {
+        title,
+        description,
+        ingredient: ingredients,
+        preparation_mode: preparation,
+        movie_link: movie,
+        userId: "65bdacb8bd9995dee558bf9c",
+      });
 
-    console.log(response)
+      toast.success(response.data.message, {
+        position: "top-center",
+      });
+    } catch (error) {
+      toast.error("Error, tente novamente mais tarde!", {
+        position: "top-center",
+      });
+    }
   };
 
   return (
