@@ -11,14 +11,16 @@ import { api } from "@/services/apiClient";
 type PropsReceita = {
   title: string;
   description: string;
-  ingredients: string;
+  ingredient: string;
   preparation: string;
   movie: string;
+  id: string;
 };
 
 const Home = () => {
   const [modal, setModal] = useState(false);
 
+  const [item, setItem] = useState<PropsReceita | undefined>();
   const [response, setResponse] = useState<PropsReceita[]>([]);
 
   useEffect(() => {
@@ -31,6 +33,13 @@ const Home = () => {
     handleReponse();
     console.log(response);
   }, []);
+
+  const handleSendModal = async (id: string) => {
+    const response = await api.get(`/list/${id}`);
+    let data = response.data.infos;
+    setItem(data);
+    setModal(true)
+  };
 
   return (
     <div>
@@ -82,7 +91,7 @@ const Home = () => {
             >
               <h4>{item.title}</h4>
               <button
-                onClick={() => setModal(true)}
+                onClick={() => handleSendModal(item.id)}
                 className="bg-blue-500 py-1 px-3 rounded-md"
               >
                 Veja a receita
@@ -90,7 +99,7 @@ const Home = () => {
             </div>
           ))}
         </div>
-        <ModalOrder modal={modal} setModal={setModal} />
+        {item && <ModalOrder item={item} modal={modal} setModal={setModal} />}
       </div>
       <Copywhite />
     </div>
