@@ -5,6 +5,7 @@ import { Input2 } from "@/components/Input2";
 import { AuthContext } from "@/context/AuthContext";
 import { FormEvent, useContext, useState } from "react";
 import { PiBowlFood } from "react-icons/pi";
+import { toast } from "react-toastify";
 
 const CriarReceita = () => {
   const [title, setTitle] = useState("");
@@ -19,6 +20,13 @@ const CriarReceita = () => {
 
   const handleCreate = async (event: FormEvent) => {
     event.preventDefault();
+
+    if (!title || !description || !ingredients || !preparation || !movie) {
+      toast.error("Preencha todos os campos!", {
+        position: "top-center"
+      })
+      return;
+    }
 
     let data = {
       title,
