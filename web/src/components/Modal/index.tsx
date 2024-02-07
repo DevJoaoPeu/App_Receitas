@@ -5,6 +5,7 @@ import { FiX } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import { api } from "@/services/apiClient";
 
+
 interface PropsModal {
   modal: boolean;
   setModal: (props: boolean) => void;
@@ -15,14 +16,12 @@ interface PropsReceita {
   title: string;
   description: string;
   ingredient: string;
-  preparation: string;
-  movie: string;
+  preparation_mode: string;
+  movie_link: string;
 }
 
-
 export const ModalOrder = ({ modal, setModal, item }: PropsModal) => {
-
-  const ArrayIngredients =  item.ingredient.split(",")
+  const ArrayIngredients = item.ingredient.split(",");
 
   const customStyle = {
     overlay: {
@@ -41,7 +40,6 @@ export const ModalOrder = ({ modal, setModal, item }: PropsModal) => {
     },
   };
 
-
   return (
     <Modal isOpen={modal} style={customStyle}>
       <button
@@ -50,32 +48,29 @@ export const ModalOrder = ({ modal, setModal, item }: PropsModal) => {
       >
         <FiX />
       </button>
-      <div className="flex flex-col sm:flex-row gap-10 items-center">
+      <div className="flex flex-col sm:flex-row gap-10 items-center overflow-y-auto">
         <div className="sm:w-1/2 sm:flex sm:gap-9">
           <div className="w-full sm:w-auto">
-            <Image src={logo} alt="logo" width={300} height={200} />
+            //
+            //
+            //
+            //
           </div>
           <div className="px-5 py-5">
             <ul className="list-disc">
-              {
-                ArrayIngredients.map((item, index) =>(
-                  <li key={index}>{item}</li>
-                ))
-              }
+              {ArrayIngredients.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
             </ul>
           </div>
         </div>
         <div className="sm:w-1/2">
           <div className="text-center">
             <h1 className="text-xl font-bold mb-3"> {item.title} </h1>
-            <h4 className="text-sm sm:text-[17px]">
-              {item.preparation}
-            </h4>
+            <h4 className="text-sm sm:text-[17px]">{item.description}</h4>
           </div>
           <div className="mt-5">
-            <p className="text-sm sm:text-[17px]">
-            {item.description}
-            </p>
+            <p className="text-sm sm:text-[17px]">{item.preparation_mode}</p>
           </div>
         </div>
       </div>
