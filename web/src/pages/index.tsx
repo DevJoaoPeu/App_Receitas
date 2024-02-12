@@ -7,6 +7,7 @@ import { FormEvent, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "@/context/AuthContext";
 import { canSSRGuest } from "@/utils/canSSrGuest";
+import { canSSRAuth } from "@/utils/canSSRAuth";
 
 const Home = () => {
   const [email, setEmail] = useState("");

@@ -1,3 +1,4 @@
+import { PropsCookie } from "@/context/AuthContext";
 import { AuthTokenError } from "@/services/errors";
 import {
   GetServerSideProps,
@@ -12,9 +13,9 @@ export function canSSRAuth<P>(fn: GetServerSideProps<P>) {
   ): Promise<GetServerSidePropsResult<P>> => {
     const cookies = parseCookies(ctx);
 
-    const token = cookies["@appPedidos.token"];
+    const cookie: PropsCookie = JSON.parse(cookies["@appPedidos.token"])
 
-    if (!token) {
+    if (!cookie.token) {
       return {
         redirect: {
           destination: "/",
@@ -26,16 +27,17 @@ export function canSSRAuth<P>(fn: GetServerSideProps<P>) {
     try {
       return await fn(ctx);
     } catch (error) {
-      if (error instanceof AuthTokenError) {
-        destroyCookie(ctx, "@appPedidos.token");
+      // if (error instanceof AuthTokenError) {
+      //   destroyCookie(ctx, "@appPedidos.token");
 
-        return {
-          redirect: {
-            destination: "/",
-            permanent: false,
-          },
-        };
-      }
+      //   return {
+      //     redirect: {
+      //       destination: "/",
+      //       permanent: false,
+      //     },
+      //   };
+      // }
+      console.log(error)
     }
   };
 }

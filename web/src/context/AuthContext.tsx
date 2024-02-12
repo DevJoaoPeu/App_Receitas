@@ -1,6 +1,6 @@
 import { api } from "@/services/apiClient";
 import Router from "next/router";
-import { destroyCookie, setCookie } from "nookies";
+import { destroyCookie, setCookie, parseCookies } from "nookies";
 import { ReactNode, createContext, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -26,7 +26,6 @@ interface UserProps {
   token: string;
 }
 
-
 interface SignUpProps {
   name: string;
   email: string;
@@ -39,6 +38,11 @@ interface PropsReceita {
   ingredients: string;
   preparation: string;
   movie: string;
+}
+
+export interface PropsCookie{
+  token: string;
+  id: string;
 }
 
 export const AuthContext = createContext({} as ContextData);
@@ -76,7 +80,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const response = await api.post("/login", { email, password });
 
       const { id, name, token } = response.data.data;
-      const data = JSON.stringify({id, token})
+      const data = JSON.stringify({ id, token });
       setCookie(undefined, "@appPedidos.token", data, {
         maxAge: 60 * 60 * 24 * 30,
         path: "/",
@@ -111,13 +115,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     movie,
   }: PropsReceita) => {
     try {
+      const cookies = parseCookies();
+
+      const cookie: PropsCookie = JSON.parse(cookies["@appPedidos.token"])
+    
       const response = await api.post("/create", {
         title,
         description,
         ingredient: ingredients,
         preparation_mode: preparation,
         movie_link: movie,
-        userId: "65bdacb8bd9995dee558bf9c",
+        userId: cookie.id,
       });
 
       toast.success(response.data.message, {
