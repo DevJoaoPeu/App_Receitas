@@ -53,7 +53,7 @@ export const ModalOrder = ({ modal, setModal, item }: PropsModal) => {
       <div className="flex flex-col sm:flex-row gap-10 items-center overflow-y-auto">
         <div className="sm:w-1/2 sm:flex sm:gap-9">
           <div className=" sm:w-auto">
-            <Youtube opts={{width: "auto", height: "auto"}} videoId="8TfGZ79nntc2glaz"/>
+            <Youtube opts={{width: "auto", height: "auto"}} videoId={videoId}/>
           </div>
           <div className="px-5 py-5">
             <ul className="list-disc">
