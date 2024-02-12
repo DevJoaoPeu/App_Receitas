@@ -6,10 +6,12 @@ import {
 } from "next";
 import { parseCookies, destroyCookie } from "nookies";
 
-export function canSSRAuth<P>(fn: GetServerSideProps<P>) {
+export function canSSRAuth<P extends { [key: string]: any }>(
+  fn: GetServerSideProps<P>
+) {
   return async (
     ctx: GetServerSidePropsContext
-  ): Promise<GetServerSidePropsResult<P>> => {
+  ): Promise<GetServerSidePropsResult<{}>> => {
     const cookies = parseCookies(ctx);
 
     const token = cookies["@appPedidos.token"];
@@ -36,6 +38,12 @@ export function canSSRAuth<P>(fn: GetServerSideProps<P>) {
           },
         };
       }
+
+      return {
+        props: {
+          
+        }, 
+      };
     }
   };
 }
