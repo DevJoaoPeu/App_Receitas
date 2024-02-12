@@ -26,6 +26,7 @@ interface UserProps {
   token: string;
 }
 
+
 interface SignUpProps {
   name: string;
   email: string;
@@ -75,8 +76,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const response = await api.post("/login", { email, password });
 
       const { id, name, token } = response.data.data;
-      console.log(response);
-      setCookie(undefined, "@appPedidos.token", token, {
+      const data = JSON.stringify({id, token})
+      setCookie(undefined, "@appPedidos.token", data, {
         maxAge: 60 * 60 * 24 * 30,
         path: "/",
       });
