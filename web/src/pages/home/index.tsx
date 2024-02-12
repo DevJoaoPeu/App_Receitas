@@ -26,10 +26,18 @@ const Home = () => {
 
   useEffect(() => {
     const handleReponse = async () => {
-      const response = await api.get("/list");
+      try {
+        const response = await api.get("/list");
 
-      const data: PropsReceita[] = response.data.infos;
-      setResponse(data);
+        if(!response){
+          return;
+        }
+
+        const data: PropsReceita[] = response.data.infos;
+        setResponse(data);
+      } catch (error) {
+        console.log(error)
+      }
     };
     handleReponse();
   }, []);
