@@ -1,6 +1,6 @@
 import { api } from "@/services/apiClient";
 import Router from "next/router";
-import { destroyCookie, setCookie } from "nookies";
+import { destroyCookie, parseCookies, setCookie } from "nookies";
 import { ReactNode, createContext, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -81,6 +81,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         path: "/",
       });
 
+      setCookie(undefined, "@appPedidosId.id", id, {
+        maxAge: 60 * 60 * 24 * 30,
+        path: "/",
+      });
+
+
       setUser({
         id,
         name,
@@ -109,6 +115,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     preparation,
     movie,
   }: PropsReceita) => {
+
+    const cookie = parseCookies();
+
+    const id = cookie["@appPedidosId.id"]
+
     try {
       const response = await api.post("/create", {
         title,
@@ -116,7 +127,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         ingredient: ingredients,
         preparation_mode: preparation,
         movie_link: movie,
-        userId: "65bdacb8bd9995dee558bf9c",
+        userId: id,
       });
 
       toast.success(response.data.message, {
