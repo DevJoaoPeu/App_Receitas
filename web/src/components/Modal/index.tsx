@@ -4,7 +4,7 @@ import logo from "../../../public/feijoada.png";
 import { FiX } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import { api } from "@/services/apiClient";
-
+import Youtube from "react-youtube"
 
 interface PropsModal {
   modal: boolean;
@@ -22,6 +22,8 @@ interface PropsReceita {
 
 export const ModalOrder = ({ modal, setModal, item }: PropsModal) => {
   const ArrayIngredients = item.ingredient.split(",");
+
+  let videoId = item.movie_link.split("=")[1]
 
   const customStyle = {
     overlay: {
@@ -50,11 +52,8 @@ export const ModalOrder = ({ modal, setModal, item }: PropsModal) => {
       </button>
       <div className="flex flex-col sm:flex-row gap-10 items-center overflow-y-auto">
         <div className="sm:w-1/2 sm:flex sm:gap-9">
-          <div className="w-full sm:w-auto">
-            //
-            //
-            //
-            //
+          <div className=" sm:w-auto">
+            <Youtube opts={{width: "auto", height: "auto"}} videoId="8TfGZ79nntc2glaz"/>
           </div>
           <div className="px-5 py-5">
             <ul className="list-disc">
