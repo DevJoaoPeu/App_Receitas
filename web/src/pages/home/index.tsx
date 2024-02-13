@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { api } from "@/services/apiClient";
 import { toast } from "react-toastify";
+import { RxUpdate } from "react-icons/rx";
 
 type PropsReceita = {
   title: string;
@@ -24,15 +25,17 @@ const Home = () => {
   const [item, setItem] = useState<PropsReceita | undefined>();
   const [response, setResponse] = useState<PropsReceita[]>([]);
 
+  const [inputSearch, setInputSearch] = useState("");
+
   useEffect(() => {
     const handleReponse = async () => {
       try {
         const response = await api.get("/list");
-        
+
         const data: PropsReceita[] = response.data.infos;
         setResponse(data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
     handleReponse();
@@ -56,6 +59,29 @@ const Home = () => {
       toast.error("Erro ao carregar as informações", {
         position: "top-center",
       });
+    }
+  };
+
+  const handleSearch = () => {
+    function removeAccents(str: string) {
+      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    const filteredResponse = response.filter((item: PropsReceita) =>
+    removeAccents(item.title.toLowerCase()).includes(removeAccents(inputSearch.toLowerCase().trim()))
+    );
+    setResponse(filteredResponse);
+    console.log(response);
+  };
+
+  const handleUpdate = async () => {
+    try {
+      const response = await api.get("/list");
+
+      const data: PropsReceita[] = response.data.infos;
+      setResponse(data);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -96,9 +122,19 @@ const Home = () => {
           <input
             className="rounded-md bg-blue-600 text-white placeholder-slate-200 outline-none px-6 py-3 w-full sm:max-w-[400px]"
             placeholder="Busque a receita"
+            onChange={(e) => setInputSearch(e.target.value)}
           />
-          <button className="rounded-md bg-blue-600 px-4 py-3 text-white">
+          <button
+            onClick={handleSearch}
+            className="rounded-md bg-blue-600 px-4 py-3 text-white"
+          >
             <FaSearch />
+          </button>
+          <button
+            onClick={handleUpdate}
+            className="rounded-md bg-blue-600 px-4 py-3 text-white"
+          >
+            <RxUpdate />
           </button>
         </div>
         <div className="flex flex-col gap-4 mb-10">
