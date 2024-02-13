@@ -1,10 +1,5 @@
-import Image from "next/image";
 import Modal from "react-modal";
-import logo from "../../../public/feijoada.png";
 import { FiX } from "react-icons/fi";
-import { useEffect, useState } from "react";
-import { api } from "@/services/apiClient";
-import Youtube from "react-youtube"
 
 interface PropsModal {
   modal: boolean;
@@ -23,8 +18,9 @@ interface PropsReceita {
 export const ModalOrder = ({ modal, setModal, item }: PropsModal) => {
   const ArrayIngredients = item.ingredient.split(",");
 
-  let videoId = item.movie_link.split("=")[1]
+  let videoId = item.movie_link.split("be/")[1]
 
+  console.log(videoId)
   const customStyle = {
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.8)",
@@ -53,7 +49,10 @@ export const ModalOrder = ({ modal, setModal, item }: PropsModal) => {
       <div className="flex flex-col sm:flex-row gap-10 items-center overflow-y-auto">
         <div className="sm:w-1/2 sm:flex sm:gap-9">
           <div className=" sm:w-auto">
-            <Youtube opts={{width: "auto", height: "auto"}} videoId={videoId}/>
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}` }
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            />
           </div>
           <div className="px-5 py-5">
             <ul className="list-disc">
