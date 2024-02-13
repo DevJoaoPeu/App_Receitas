@@ -3,7 +3,7 @@ import { FaSpinner } from "react-icons/fa";
 
 interface PropsButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  loading: boolean;
+  loading?: boolean;
 }
 
 export const Button = ({ children, loading, ...rest }: PropsButton) => {
