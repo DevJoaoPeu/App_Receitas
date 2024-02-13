@@ -52,7 +52,7 @@ const Signup = () => {
             type="password"
             placeholder="Senha"
           />
-          <Button onClick={handleSignUp}>Login</Button>
+          <Button onClick={handleSignUp}>Cadastre-se</Button>
         </div>
         <span className="m-8">
           Já tem conta?{" "}
