@@ -133,6 +133,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       toast.success(response.data.message, {
         position: "top-center",
       });
+
+      Router.push("/home")
     } catch (error) {
       toast.error("Error, tente novamente mais tarde!", {
         position: "top-center",
