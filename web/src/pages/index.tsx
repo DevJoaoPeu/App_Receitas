@@ -12,6 +12,8 @@ const Home = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [loading, setLoading] = useState(false)
+
   const { signIn } = useContext(AuthContext);
 
   const handleLogin = async (e: FormEvent) => {
@@ -23,12 +25,16 @@ const Home = () => {
       return;
     }
 
+    setLoading(true)
+
     let data = {
       email,
       password,
     };
 
     await signIn(data);
+
+    setLoading(false)
   };
 
   return (
@@ -47,7 +53,7 @@ const Home = () => {
               type="password"
               placeholder="Senha"
             />
-            <Button onClick={handleLogin} type="submit">
+            <Button onClick={handleLogin} type="submit" loading={loading}>
               Login
             </Button>
           </form>
