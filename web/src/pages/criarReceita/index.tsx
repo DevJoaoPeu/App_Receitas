@@ -1,6 +1,5 @@
 import { Copywhite } from "@/components/Copywhite";
 import { Header } from "@/components/Header";
-import { Input } from "@/components/Input";
 import { Input2 } from "@/components/Input2";
 import { AuthContext } from "@/context/AuthContext";
 import { FormEvent, useContext, useState } from "react";
@@ -15,8 +14,6 @@ const CriarReceita = () => {
   const [movie, setMovie] = useState("");
 
   const { createReceita } = useContext(AuthContext);
-
-  // const [itemReceita, setItemReceita] = useState<string[]>([])
 
   const handleCreate = async (event: FormEvent) => {
     event.preventDefault();
@@ -37,8 +34,7 @@ const CriarReceita = () => {
     };
 
     await createReceita(data);
-    //  const arrayIngredients = ingredients.split(",")
-    //  setItemReceita(arrayIngredients)
+
   };
 
   return (
