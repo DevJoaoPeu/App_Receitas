@@ -18,9 +18,8 @@ interface PropsReceita {
 export const ModalOrder = ({ modal, setModal, item }: PropsModal) => {
   const ArrayIngredients = item.ingredient.split(",");
 
-  let videoId = item.movie_link.split("be/")[1]
+  let videoId = item.movie_link.split("be/")[1];
 
-  console.log(videoId)
   const customStyle = {
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.8)",
@@ -33,8 +32,9 @@ export const ModalOrder = ({ modal, setModal, item }: PropsModal) => {
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       backgroundColor: "#fff",
-      padding: "40px",
+      padding: "25px",
       maxWidth: "90%",
+      maxHeight: "90%",
     },
   };
 
@@ -50,7 +50,7 @@ export const ModalOrder = ({ modal, setModal, item }: PropsModal) => {
         <div className="sm:w-1/2 sm:flex sm:gap-9">
           <div className=" sm:w-auto">
             <iframe
-              src={`https://www.youtube.com/embed/${videoId}` }
+              src={`https://www.youtube.com/embed/${videoId}`}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             />
           </div>
