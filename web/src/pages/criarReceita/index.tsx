@@ -72,7 +72,7 @@ const CriarReceita = () => {
               onClick={handleCreate}
               className="rounded-md bg-blue-600 text-white w-full px-2 py-[.4rem] max-w-[22rem]"
             >
-              Cadastrar
+              cadastrar
             </button>
           </form>
         </div>
