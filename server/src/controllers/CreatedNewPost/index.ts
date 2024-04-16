@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import { prisma } from "../../Services/prisma";
+import { prisma } from "../../ultil/prisma";
 
 interface Props {
   title: string;
