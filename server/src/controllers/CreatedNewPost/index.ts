@@ -1,5 +1,6 @@
 import { Response, Request } from "express";
 import { prisma } from "../../util/prisma";
+import { createReceita } from "../../services/receitas.service";
 
 interface Props {
   title: string;
@@ -10,37 +11,37 @@ interface Props {
   userId: string;
 }
 
- export const CreatedNewPost = async (req: Request, res: Response) => {
-  const {
-    title,
-    description,
-    ingredient,
-    movie_link,
-    preparation_mode,
-    userId
-  }: Props = req.body;
+export const CreatedNewPost = async (req: Request, res: Response) => {
+  try {
+    const {
+      title,
+      description,
+      ingredient,
+      movie_link,
+      preparation_mode,
+      userId,
+    }: Props = req.body;
 
-  const receitas = await prisma.receitas.create({
-    data: {
-        title,
-        description,
-        ingredient,
-        movie_link,
-        preparation_mode,
-        userId
-    },
-  });
+    const receitaData = {
+      title,
+      description,
+      ingredient,
+      movie_link,
+      preparation_mode,
+      userId,
+    };
 
-  if(!receitas){
+    const receita = await createReceita(receitaData);
+
+    return res.status(200).json({
+      error: false,
+      message: "Receita cadastrada com sucesso!",
+      receita,
+    });
+  } catch (error) {
     return res.status(400).json({
       error: true,
-      message: "Error ao cadastrar"
+      message: error.message || "Error ao cadastrar receita"
     })
   }
-
-  return res.status(200).json({
-    error: false,
-    message: "Receita cadastrada com sucesso!",
-    receitas
-  })
 };
