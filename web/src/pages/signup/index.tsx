@@ -21,6 +21,7 @@ const Signup = () => {
       toast.error("Preecha todos os campos", {
         position: "top-center",
       });
+      return;
     }
 
     let data = {
