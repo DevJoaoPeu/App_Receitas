@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { prisma } from "../../ultil/prisma";
+import { prisma } from "../../util/prisma";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 

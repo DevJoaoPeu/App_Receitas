@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import { prisma } from "../../ultil/prisma";
+import { prisma } from "../../util/prisma";
 
 export const ListPostId = async (req: Request, res: Response) => {
 
